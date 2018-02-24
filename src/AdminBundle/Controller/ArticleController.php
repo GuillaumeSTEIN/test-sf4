@@ -16,10 +16,19 @@ class ArticleController extends Controller
     /**
      * @Route("articles")
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = $this->getRepository()->getIndexQuery();
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('@Admin/article/index.html.twig', [
-            'articles' => $this->getRepository()->findLast(10),
+            'pagination' => $pagination
         ]);
     }
 

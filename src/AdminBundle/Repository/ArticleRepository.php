@@ -35,4 +35,10 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    public function getIndexQuery()
+    {
+        return $this->createQueryBuilder('a')
+            ->getQuery();
+    }
 }

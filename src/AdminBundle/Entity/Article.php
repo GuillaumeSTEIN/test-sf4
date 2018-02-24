@@ -30,6 +30,7 @@ class Article
     /**
      * @var string
      * @ORM\Column(length=1000)
+     * @Assert\NotBlank()
      * @Assert\Length(max="1000")
      */
     private $description;

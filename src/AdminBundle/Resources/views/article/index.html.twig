@@ -1,16 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <h1 class="ui header">
+        Article list
+    </h1>
+
     <table class="ui celled table">
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Posted At</th>
+            <th{% if pagination.isSorted('a.title') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}
+            </th>
+            <th{% if pagination.isSorted('a.postedAt') %} class="sorted"{% endif %}>
+                {{ knp_pagination_sortable(pagination, 'Posted At', 'a.postedAt') }}
+            </th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        {% for article in articles %}
+        {% for article in pagination %}
             <tr>
                 <td>
                     <a href="{{ path('app_admin_article_view', {'id':article.id}) }}">
@@ -29,7 +37,17 @@
         {% endfor %}
         </tbody>
     </table>
-    <a class="ui primary button" href="{{ path('app_admin_article_create') }}">
-        Create
-    </a>
+
+    <div class="ui menu navigation">
+        {{ knp_pagination_render(pagination) }}
+
+        <div class="right menu">
+            <div class="ui item">
+                <a class="ui primary button" href="{{ path('app_admin_article_create') }}">
+                    Create
+                </a>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
