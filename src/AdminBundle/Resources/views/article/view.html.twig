@@ -37,14 +37,14 @@
         </tr>
     </table>
     <div class="ui buttons">
-        <a class="ui primary icon button" href="{{ path('app_admin_article_index') }}">
-            <i class="chevron left icon"></i>
+        <a class="ui primary button" href="{{ path('app_admin_article_index') }}">
+            Back
         </a>
-        <a class="ui yellow icon button" href="{{ path('app_admin_article_edit', {'id':article.id}) }}">
-            <i class="edit icon"></i>
+        <a class="ui yellow button" href="{{ path('app_admin_article_edit', {'id':article.id}) }}">
+            Edit
         </a>
-        <a class="ui red icon button" href="{{ path('app_admin_article_remove', {'id':article.id}) }}">
-            <i class="remove icon"></i>
+        <a class="ui red button" href="{{ path('app_admin_article_remove', {'id':article.id}) }}">
+            Remove
         </a>
     </div>
 {% endblock %}

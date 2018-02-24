@@ -12,10 +12,10 @@
     <table class="ui celled table">
         <thead>
         <tr>
-            <th{% if pagination.isSorted('a.title') %} class="sorted"{% endif %}>
+            <th>
                 {{ knp_pagination_sortable(pagination, 'Title', 'a.title') }}
             </th>
-            <th{% if pagination.isSorted('a.postedAt') %} class="sorted"{% endif %}>
+            <th>
                 {{ knp_pagination_sortable(pagination, 'Posted At', 'a.postedAt') }}
             </th>
             <th></th>
@@ -34,7 +34,7 @@
                 </td>
                 <td>
                     <a class="ui yellow tiny button" href="{{ path('app_admin_article_edit', {'id':article.id}) }}">
-                        edit
+                        Edit
                     </a>
                 </td>
             </tr>
