@@ -41,6 +41,9 @@ class Article
      */
     private $postedAt;
 
+    /**
+     * Article constructor.
+     */
     public function __construct()
     {
         $this->postedAt = new DateTime();
@@ -75,7 +78,7 @@ class Article
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        $this->description = strip_tags($description,'<a><img>');
     }
 
     /**
@@ -91,7 +94,7 @@ class Article
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->title = strip_tags($title);
     }
 
     /**
