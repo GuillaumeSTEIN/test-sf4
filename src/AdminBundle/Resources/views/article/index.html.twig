@@ -7,6 +7,10 @@
 {% block body %}
     <h1 class="ui header">
         {{ block('title') }}
+        <div class="ui label">
+            <i class="file alternate outline icon"></i>
+            {{ pagination.getTotalItemCount }}
+        </div>
     </h1>
 
     <table class="ui celled table">

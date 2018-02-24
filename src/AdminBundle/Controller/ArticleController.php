@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * User controller.
  *
- * @Route("/articles/")
+ * @Route("articles/")
  */
 class ArticleController extends Controller
 {
