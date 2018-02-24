@@ -32,17 +32,17 @@ class ArticleController extends Controller
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getEM();
             $em->persist($article);
             $em->flush();
 
-            return $this->redirectToRoute('app_admin_article_view',[
+            return $this->redirectToRoute('app_admin_article_view', [
                 'id' => $article->getId(),
             ]);
         }
 
-        return $this->render('@Admin/article/create.html.twig',[
+        return $this->render('@Admin/article/create.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -66,28 +66,19 @@ class ArticleController extends Controller
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getEM();
             $em->flush();
 
-            return $this->redirectToRoute('app_admin_article_view',[
+            return $this->redirectToRoute('app_admin_article_view', [
                 'id' => $article->getId(),
             ]);
         }
-        return $this->render('@Admin/article/edit.html.twig',[
+        return $this->render('@Admin/article/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
-    /**
-     * @return ArticleRepository
-     */
-    private function getRepository(): ArticleRepository
-    {
-        /** @var ArticleRepository $repo */
-        $repo = $this->getDoctrine()->getRepository(Article::class);
-        return $repo;
-    }
     /**
      * @Route("articles/remove/{id}")
      */
@@ -106,5 +97,15 @@ class ArticleController extends Controller
     private function getEM(): ObjectManager
     {
         return $this->getDoctrine()->getManager();
+    }
+
+    /**
+     * @return ArticleRepository
+     */
+    private function getRepository(): ArticleRepository
+    {
+        /** @var ArticleRepository $repo */
+        $repo = $this->getDoctrine()->getRepository(Article::class);
+        return $repo;
     }
 }

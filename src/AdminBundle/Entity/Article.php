@@ -78,7 +78,7 @@ class Article
      */
     public function setDescription($description)
     {
-        $this->description = strip_tags($description,'<a><img>');
+        $this->description = strip_tags($description, '<a><img>');
     }
 
     /**

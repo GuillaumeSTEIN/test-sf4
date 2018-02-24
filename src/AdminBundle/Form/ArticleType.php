@@ -14,8 +14,7 @@ class ArticleType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description', TextareaType::class)
-        ;
+            ->add('description', TextareaType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

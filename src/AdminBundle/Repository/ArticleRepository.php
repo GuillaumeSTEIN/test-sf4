@@ -33,7 +33,6 @@ class ArticleRepository extends ServiceEntityRepository
             ->orderBy('a.postedAt', 'DESC')
             ->setMaxResults($count)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
 }
