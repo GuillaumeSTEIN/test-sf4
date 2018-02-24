@@ -43,7 +43,7 @@
         <a class="ui yellow button" href="{{ path('app_admin_article_edit', {'id':article.id}) }}">
             Edit
         </a>
-        <a class="ui red button" href="{{ path('app_admin_article_remove', {'id':article.id}) }}">
+        <a class="ui red button" href="{{ path('app_admin_article_remove', {'id':article.id}) }}" data-requires-confirmation>
             Remove
         </a>
     </div>

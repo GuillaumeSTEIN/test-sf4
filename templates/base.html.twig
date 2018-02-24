@@ -12,12 +12,16 @@
         <div class="ui container" style="margin-top: 50px;">
             {% block body %}{% endblock %}
         </div>
+        {% include 'Modal/_confirmation.html.twig' %}
         {% block javascripts %}
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.0/semantic.min.js"></script>
             <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" defer></script>
+            <script src="{{ asset('js/require-confirmation.js') }}" defer></script>
             <script>
                 $(document).ready(function() {
+                    $('[data-requires-confirmation]').requireConfirmation();
+
                     // Toastr
                     toastr.options = {
                         "progressBar": true
