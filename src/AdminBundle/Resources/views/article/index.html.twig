@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Posted At</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>
+                    {{ article.title }}
+                </td>
+                <td>
+                    {{ article.postedAt|date }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_admin_article_create') }}">
+        <button class="ui primary button">
+            Create
+        </button>
+    </a>
+{% endblock %}

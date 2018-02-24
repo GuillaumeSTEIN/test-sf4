@@ -14,21 +14,26 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 class ArticleRepository extends ServiceEntityRepository
 {
+    /**
+     * ArticleRepository constructor.
+     * @param RegistryInterface $registry
+     */
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Article::class);
     }
 
-    /*
-    public function findBySomething($value)
+    /**
+     * @param $count
+     * @return Article[]
+     */
+    public function findLast($count)
     {
         return $this->createQueryBuilder('a')
-            ->where('a.something = :value')->setParameter('value', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('a.postedAt', 'DESC')
+            ->setMaxResults($count)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
 }
