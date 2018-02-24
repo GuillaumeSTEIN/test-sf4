@@ -4,19 +4,19 @@
     {% set article = form.vars.data %}
     <h1>Edit Article</h1>
     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-        {{ form_row(form.title) }}
-        {{ form_row(form.description) }}
-        <div class="field">
-            <div class="ui buttons">
-                <input type="submit" class="ui primary button" value="Save">
-                <a class="ui yellow button" href="{{ path('app_admin_article_view', {'id':article.id}) }}">
-                    Cancel
-                </a>
-                <a class="ui red button" href="{{ path('app_admin_article_remove', {'id':article.id}) }}">
-                    Remove
-                </a>
-            </div>
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    <div class="field">
+        <div class="ui buttons">
+            <input type="submit" class="ui primary button" value="Save">
+            <a class="ui yellow button" href="{{ path('app_admin_article_view', {'id':article.id}) }}">
+                Cancel
+            </a>
+            <a class="ui red button" href="{{ path('app_admin_article_remove', {'id':article.id}) }}">
+                Remove
+            </a>
         </div>
+    </div>
     {{ form_end(form) }}
 
 {% endblock %}

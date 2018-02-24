@@ -2,5 +2,16 @@
 
 {% block body %}
     <h1>Create new Article</h1>
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.description) }}
+    <div class="field">
+        <div class="ui buttons">
+            <input type="submit" class="ui primary button" value="Create">
+            <a class="ui yellow button" href="{{ path('app_admin_article_index') }}">
+                Cancel
+            </a>
+        </div>
+    </div>
+    {{ form_end(form) }}
 {% endblock %}
