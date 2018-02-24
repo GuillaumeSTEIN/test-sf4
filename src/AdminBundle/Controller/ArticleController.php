@@ -17,10 +17,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        /** @var ArticleRepository $repo */
-        $repo = $this->getDoctrine()->getRepository(Article::class);
         return $this->render('@Admin/article/index.html.twig', [
-            'articles' => $repo->findLast(10),
+            'articles' => $this->getRepository()->findLast(10),
         ]);
     }
 
@@ -54,11 +52,18 @@ class ArticleController extends Controller
      */
     public function view($id)
     {
+        return $this->render('@Admin/article/view.html.twig', [
+            'article' => $this->getRepository()->find($id),
+        ]);
+    }
+
+    /**
+     * @return ArticleRepository
+     */
+    private function getRepository(): ArticleRepository
+    {
         /** @var ArticleRepository $repo */
         $repo = $this->getDoctrine()->getRepository(Article::class);
-
-        return $this->render('@Admin/article/view.html.twig', [
-            'article' => $repo->find($id),
-        ]);
+        return $repo;
     }
 }
