@@ -6,6 +6,7 @@
         <tr>
             <th>Title</th>
             <th>Posted At</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +19,11 @@
                 </td>
                 <td>
                     {{ article.postedAt|date }}
+                </td>
+                <td>
+                    <a class="ui yellow tiny button" href="{{ path('app_admin_article_edit', {'id':article.id}) }}">
+                        edit
+                    </a>
                 </td>
             </tr>
         {% endfor %}

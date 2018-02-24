@@ -58,6 +58,29 @@ class ArticleController extends Controller
     }
 
     /**
+     * @Route("articles/edit/{id}")
+     */
+    public function edit(Request $request, $id)
+    {
+        $article = $this->getRepository()->find($id);
+        $form = $this->createForm(ArticleType::class, $article);
+        $form->add('edit',SubmitType::class);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $this->redirectToRoute('app_admin_article_view',[
+                'id' => $article->getId(),
+            ]);
+        }
+        return $this->render('@Admin/article/edit.html.twig',[
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @return ArticleRepository
      */
     private function getRepository(): ArticleRepository
