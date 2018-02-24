@@ -54,6 +54,8 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
+            $this->addFlash('success','Your article has been successfully saved');
+
             return $this->redirectToRoute('app_admin_article_view', [
                 'id' => $article->getId(),
             ]);
@@ -88,6 +90,8 @@ class ArticleController extends Controller
             $em = $this->getEM();
             $em->flush();
 
+            $this->addFlash('success','Your article has been successfully saved');
+
             return $this->redirectToRoute('app_admin_article_view', [
                 'id' => $article->getId(),
             ]);
@@ -105,6 +109,8 @@ class ArticleController extends Controller
         $em = $this->getEM();
         $em->remove($article);
         $em->flush();
+
+        $this->addFlash('success','Your article has been successfully removed');
 
         return $this->redirectToRoute('app_admin_article_index');
     }
