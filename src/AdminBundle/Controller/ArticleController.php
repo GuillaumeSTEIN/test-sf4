@@ -39,7 +39,9 @@ class ArticleController extends Controller
             $em->persist($article);
             $em->flush();
 
-            $this->redirect('app_admin_article_index');
+            return $this->redirectToRoute('app_admin_article_view',[
+                'id' => $article->getId(),
+            ]);
         }
 
         return $this->render('@Admin/article/create.html.twig',[
