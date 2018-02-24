@@ -12,7 +12,9 @@
         {% for article in articles %}
             <tr>
                 <td>
-                    {{ article.title }}
+                    <a href="{{ path('app_admin_article_view', {'id':article.id}) }}">
+                        {{ article.title }}
+                    </a>
                 </td>
                 <td>
                     {{ article.postedAt|date }}

@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ArticleController extends Controller
 {
-
     /**
      * @Route("articles")
      */
@@ -45,6 +44,19 @@ class ArticleController extends Controller
 
         return $this->render('@Admin/article/create.html.twig',[
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("articles/{id}")
+     */
+    public function view($id)
+    {
+        /** @var ArticleRepository $repo */
+        $repo = $this->getDoctrine()->getRepository(Article::class);
+
+        return $this->render('@Admin/article/view.html.twig', [
+            'article' => $repo->find($id),
         ]);
     }
 }
