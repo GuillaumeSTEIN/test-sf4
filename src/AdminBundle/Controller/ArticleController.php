@@ -6,20 +6,24 @@ use App\AdminBundle\Entity\Article;
 use App\AdminBundle\Form\ArticleType;
 use App\AdminBundle\Repository\ArticleRepository;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+/**
+ * User controller.
+ *
+ * @Route("/articles/")
+ */
 class ArticleController extends Controller
 {
     /**
-     * @Route("articles")
+     * @Route("")
      */
     public function index(Request $request)
     {
         $query = $this->getRepository()->getIndexQuery();
-
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $query,
@@ -33,7 +37,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("articles/create")
+     * @Route("create")
      */
     public function create(Request $request)
     {
@@ -57,21 +61,22 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("articles/{id}")
+     * @Route("{id}")
+     * @param Article $user
+     * @return Response
      */
-    public function view($id)
+    public function view(Article $article)
     {
         return $this->render('@Admin/article/view.html.twig', [
-            'article' => $this->getRepository()->find($id),
+            'article' => $article,
         ]);
     }
 
     /**
-     * @Route("articles/edit/{id}")
+     * @Route("edit/{id}")
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, Article $article)
     {
-        $article = $this->getRepository()->find($id);
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -89,12 +94,12 @@ class ArticleController extends Controller
     }
 
     /**
-     * @Route("articles/remove/{id}")
+     * @Route("remove/{id}")
      */
-    public function remove($id)
+    public function remove(Article $article)
     {
         $em = $this->getEM();
-        $em->remove($this->getRepository()->find($id));
+        $em->remove($article);
         $em->flush();
 
         return $this->redirectToRoute('app_admin_article_index');
