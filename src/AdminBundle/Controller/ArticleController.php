@@ -5,6 +5,7 @@ namespace App\AdminBundle\Controller;
 use App\AdminBundle\Entity\Article;
 use App\AdminBundle\Form\ArticleType;
 use App\AdminBundle\Repository\ArticleRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,11 +30,10 @@ class ArticleController extends Controller
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
-        $form->add('create',SubmitType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getEM();
             $em->persist($article);
             $em->flush();
 
@@ -64,11 +64,10 @@ class ArticleController extends Controller
     {
         $article = $this->getRepository()->find($id);
         $form = $this->createForm(ArticleType::class, $article);
-        $form->add('edit',SubmitType::class);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getEM();
             $em->flush();
 
             return $this->redirectToRoute('app_admin_article_view',[
@@ -88,5 +87,24 @@ class ArticleController extends Controller
         /** @var ArticleRepository $repo */
         $repo = $this->getDoctrine()->getRepository(Article::class);
         return $repo;
+    }
+    /**
+     * @Route("articles/remove/{id}")
+     */
+    public function remove($id)
+    {
+        $em = $this->getEM();
+        $em->remove($this->getRepository()->find($id));
+        $em->flush();
+
+        return $this->redirectToRoute('app_admin_article_index');
+    }
+
+    /**
+     * @return ObjectManager
+     */
+    private function getEM(): ObjectManager
+    {
+        return $this->getDoctrine()->getManager();
     }
 }

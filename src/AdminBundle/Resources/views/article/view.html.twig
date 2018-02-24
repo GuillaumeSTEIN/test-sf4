@@ -2,26 +2,30 @@
 
 {% block body %}
     <table class="ui celled table">
-        <tbody>
-            <tr>
-                <th>Title</th>
-                <td>
-                    {{ article.title }}
-                </td>
-            </tr>
-            <tr>
-                <th>Posted At</th>
-                <td>
-                    {{ article.postedAt|date }}
-                </td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>
-                    {{ article.description|raw|nl2br }}
-                </td>
-            </tr>
-        </tbody>
+        <tr>
+            <td class="right aligned">
+                <b>Title</b>
+            </td>
+            <td>
+                {{ article.title }}
+            </td>
+        </tr>
+        <tr>
+            <td class="right aligned">
+                <b>Posted At</b>
+            </td>
+            <td>
+                {{ article.postedAt|date }}
+            </td>
+        </tr>
+        <tr>
+            <td class="right aligned">
+                <b>Description</b>
+            </td>
+            <td>
+                {{ article.description|raw|nl2br }}
+            </td>
+        </tr>
     </table>
     <div class="ui buttons">
         <a class="ui primary icon button" href="{{ path('app_admin_article_index') }}">
@@ -30,7 +34,7 @@
         <a class="ui yellow icon button" href="{{ path('app_admin_article_edit', {'id':article.id}) }}">
             <i class="edit icon"></i>
         </a>
-        <a class="ui red icon button" href="{{ path('app_admin_article_edit', {'id':article.id}) }}">
+        <a class="ui red icon button" href="{{ path('app_admin_article_remove', {'id':article.id}) }}">
             <i class="remove icon"></i>
         </a>
     </div>
