@@ -2,7 +2,9 @@
 
 namespace App\AdminBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ArticleRepository")
@@ -17,24 +19,35 @@ class Article
     private $id;
 
     /**
+     * @var string
      * @ORM\Column()
+     * @Assert\NotBlank()
+     * @Assert\Length(max="255")
      */
     private $title;
 
 
     /**
+     * @var string
      * @ORM\Column(length=1000)
+     * @Assert\Length(max="1000")
      */
     private $description;
 
     /**
-     * @ORM\
-     * Column(type="datetime")
-     * */
+     * @var DateTime
+     * @ORM\Column(type="datetime")
+     * @Assert\DateTime()
+     */
     private $postedAt;
 
+    public function __construct()
+    {
+        $this->postedAt = new DateTime();
+    }
+
     /**
-     * @return mixed
+     * @return DateTime
      */
     public function getPostedAt()
     {
@@ -42,7 +55,7 @@ class Article
     }
 
     /**
-     * @param mixed $postedAt
+     * @param DateTime $postedAt
      */
     public function setPostedAt($postedAt)
     {
@@ -50,7 +63,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
@@ -58,7 +71,7 @@ class Article
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
     public function setDescription($description)
     {
@@ -66,7 +79,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getTitle()
     {
@@ -74,7 +87,7 @@ class Article
     }
 
     /**
-     * @param mixed $title
+     * @param string $title
      */
     public function setTitle($title)
     {
@@ -82,7 +95,7 @@ class Article
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
