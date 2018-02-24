@@ -1,8 +1,14 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Edit Article
+{% endblock %}
+
 {% block body %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
     {% set article = form.vars.data %}
-    <h1>Edit Article</h1>
     {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
     {{ form_row(form.title) }}
     {{ form_row(form.description) }}

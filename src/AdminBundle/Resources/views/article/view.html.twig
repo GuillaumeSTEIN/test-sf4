@@ -1,6 +1,15 @@
 {% extends 'base.html.twig' %}
 
+
+{% block title %}
+    View Article : {{ article.title }}
+{% endblock %}
+
 {% block body %}
+    <h1 class="ui header">
+        {{ block('title') }}
+    </h1>
+
     <table class="ui celled table">
         <tr>
             <td class="right aligned">

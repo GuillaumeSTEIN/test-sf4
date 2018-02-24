@@ -1,8 +1,12 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Article list
+{% endblock %}
+
 {% block body %}
     <h1 class="ui header">
-        Article list
+        {{ block('title') }}
     </h1>
 
     <table class="ui celled table">
