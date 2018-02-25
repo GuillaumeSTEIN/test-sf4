@@ -1,13 +1,13 @@
 <?php
 
-namespace App\AdminBundle\Entity;
+namespace App\ArticleBundle\Entity;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\AdminBundle\Repository\ArticleRepository")
+ * @ORM\Entity(repositoryClass="App\ArticleBundle\Repository\ArticleRepository")
  */
 class Article
 {

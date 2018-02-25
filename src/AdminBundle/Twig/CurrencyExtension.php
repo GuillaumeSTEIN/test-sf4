@@ -3,9 +3,10 @@
 namespace App\AdminBundle\Twig;
 
 use Symfony\Component\Intl\Intl;
-use Twig_SimpleFilter;
+use Twig_Extension;
+use Twig_Filter;
 
-class CurrencyExtension extends \Twig_Extension
+class CurrencyExtension extends Twig_Extension
 {
     /**
      * {@inheritdoc}
@@ -13,7 +14,7 @@ class CurrencyExtension extends \Twig_Extension
     public function getFilters()
     {
         return [
-            new Twig_SimpleFilter('currency_symbol', [$this, 'convertCurrencyCodeToSymbol']),
+            new Twig_Filter('currency_symbol', [$this, 'convertCurrencyCodeToSymbol']),
         ];
     }
 

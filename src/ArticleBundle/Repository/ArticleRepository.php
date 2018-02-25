@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AdminBundle\Repository;
+namespace App\ArticleBundle\Repository;
 
-use App\AdminBundle\Entity\Article;
+use App\ArticleBundle\Entity\Article;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -25,7 +25,7 @@ class ArticleRepository extends ServiceEntityRepository
 
     /**
      * @param $count
-     * @return Article[]
+     * @return \App\ArticleBundle\Entity\Article[]
      */
     public function findLast($count)
     {

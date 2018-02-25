@@ -1,4 +1,4 @@
 knp_paginator:
     template:
         pagination: 'Pagination/semantic_ui_pagination.html.twig'
-        sortable: '/Pagination/semantic_ui_sortable_link.html.twig'
+        sortable: 'Pagination/semantic_ui_sortable_link.html.twig'

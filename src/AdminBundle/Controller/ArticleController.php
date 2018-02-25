@@ -2,17 +2,17 @@
 
 namespace App\AdminBundle\Controller;
 
-use App\AdminBundle\Entity\Article;
-use App\AdminBundle\Form\ArticleType;
-use App\AdminBundle\Repository\ArticleRepository;
-use Doctrine\Common\Persistence\ObjectManager;
+use App\ArticleBundle\Entity\Article;
+use App\ArticleBundle\Form\ArticleType;
+use App\ArticleBundle\Repository\ArticleRepository;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * User controller.
+ * Article controller.
  *
  * @Route("articles/")
  */
@@ -20,6 +20,8 @@ class ArticleController extends Controller
 {
     /**
      * @Route("")
+     * @param Request $request
+     * @return Response
      */
     public function index(Request $request)
     {
@@ -42,6 +44,8 @@ class ArticleController extends Controller
 
     /**
      * @Route("create")
+     * @param Request $request
+     * @return RedirectResponse|Response
      */
     public function create(Request $request)
     {
@@ -50,7 +54,7 @@ class ArticleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getEM();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
 
@@ -68,7 +72,7 @@ class ArticleController extends Controller
 
     /**
      * @Route("{id}")
-     * @param Article $user
+     * @param Article $article
      * @return Response
      */
     public function view(Article $article)
@@ -80,6 +84,9 @@ class ArticleController extends Controller
 
     /**
      * @Route("edit/{id}")
+     * @param Request $request
+     * @param Article $article
+     * @return RedirectResponse|Response
      */
     public function edit(Request $request, Article $article)
     {
@@ -87,7 +94,7 @@ class ArticleController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getEM();
+            $em = $this->getDoctrine()->getManager();
             $em->flush();
 
             $this->addFlash('success','Your article has been successfully saved');
@@ -103,24 +110,18 @@ class ArticleController extends Controller
 
     /**
      * @Route("remove/{id}")
+     * @param Article $article
+     * @return RedirectResponse
      */
     public function remove(Article $article)
     {
-        $em = $this->getEM();
+        $em = $this->getDoctrine()->getManager();
         $em->remove($article);
         $em->flush();
 
         $this->addFlash('success','Your article has been successfully removed');
 
         return $this->redirectToRoute('app_admin_article_index');
-    }
-
-    /**
-     * @return ObjectManager
-     */
-    private function getEM(): ObjectManager
-    {
-        return $this->getDoctrine()->getManager();
     }
 
     /**

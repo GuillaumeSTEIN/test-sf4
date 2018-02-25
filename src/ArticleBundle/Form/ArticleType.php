@@ -1,8 +1,8 @@
 <?php
 
-namespace App\AdminBundle\Form;
+namespace App\ArticleBundle\Form;
 
-use App\AdminBundle\Entity\Article;
+use App\ArticleBundle\Entity\Article;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
