@@ -2,7 +2,6 @@
 
 Here is my solution for this problem :
 
-``
 create a (minimalistic) blog using symfony 4.x:
  
 create a first route "/admin/articles/create" that opens a page with a form
@@ -20,4 +19,3 @@ the list is the title of the article, the title of the article is a link to “v
 if the admin clicks on the edit button it's opens the edit article page, create a route "/admin/articles/edit", with the same form as the create page, except that this time you load the article data so that the admin can edit it and then save the updated article
  
 if the admin clicks on the link of the article, it opens the view page, create a route "/articles/view/id" that displays the title of the article, the date of submission and the description
-``
